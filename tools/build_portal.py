@@ -3,7 +3,8 @@ and lifecycles.json. Open PRs and their requested states are added when `gh` can
 import json, pathlib, re, subprocess, datetime, os
 
 L = json.load(open("lifecycles.json"))
-FAMS = L["types"]
+# Documents (SOP, WI, REC) have no lifecycle: they live in the main document portal, not this one.
+FAMS = {k: v for k, v in L["types"].items() if not v.get("implied")}
 
 
 def front(path):

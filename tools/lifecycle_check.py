@@ -201,7 +201,7 @@ def main():
         else:
             info[rid] = []
     for rid in changed:  # change controls: attached documents must be Approved first
-        if rtype(rid) == "change-control" and ticks.get(rid, [None])[0] in lc.CFG["requires_docs_approved_for"] and effective.get(rid) != cur[rid]:
+        if rtype(rid) == "change-control" and (ticks.get(rid) or [None])[0] in lc.CFG["requires_docs_approved_for"] and effective.get(rid) != cur[rid]:
             for d in lc.attached(rid):
                 s = effective.get(d, cur.get(d))
                 if d in moves and any(r[1] != "signed" for r in moves[d][1]):
