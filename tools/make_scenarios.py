@@ -31,35 +31,28 @@ def branch(name, parent, msg, fn):
     g("push", "-q", "--force", "origin", name); print("pushed", name)
     return name
 
+def docs(ids, sigs=True, skip=()):
+    for rid in ids:
+        t, typ, ch, _, body = content.DOCS[rid]
+        new(rid, t, typ, ch, body)
+    if sigs:
+        for rid in ids:
+            for role in lc.TYPES[content.DOCS[rid][1]]["approvals"]["Approved"]:
+                if (rid, role) not in skip: sign(role, rid, "Approved")
+
+D1 = ("SOP-014", "WI-031", "REC-052")
+
 def s01():
     for rid, t in (("CC-001", "Update retention wording"), ("CC-002", "Add supplier qualification step")): new(rid, t, "change-control")
-    for rid, (t, typ, ch, _, body) in content.DOCS.items():
-        if rid != "SOP-017": new(rid, t, typ, ch, body)
 
-def s02_signed():
-    for r in ("SOP-014", "WI-031", "REC-052"): touch(r, "Ready for approval.")
-    for r, roles in (("SOP-014", ("Author", "R-08", "R-11")), ("WI-031", ("Author", "R-11")), ("REC-052", ("Author",))):
-        for role in roles: sign(role, r, "Approved")
-
-def s02_none():
-    for r in ("SOP-014", "WI-031"): touch(r, "Ready for approval.")
-
+def s02(): docs(D1)
+def s02_none(): docs(D1, sigs=False)
 def s02_partial():
-    s02_none()
-    for role in ("Author", "R-08"): sign(role, "SOP-014", "Approved")   # R-11 missing
-    sign("Author", "WI-031", "Approved")                                # R-11 missing
-
+    docs(D1, skip=(("SOP-014", "R-11"), ("WI-031", "R-11")))
 def s02_wrong():
-    s02_none()
-    sign("Author", "SOP-014", "Approved"); sign("R-08", "SOP-014", "Approved")
-    sign("R-11", "SOP-014", "Approved", persona="r21.signer")           # signed by someone who does not hold R-11
-    sign("Author", "WI-031", "Approved"); sign("R-11", "WI-031", "Approved")
-
+    docs(D1, skip=(("SOP-014", "R-11"),)); sign("R-11", "SOP-014", "Approved", persona="r21.signer")
 def s02_stale():
-    s02_none()
-    for role in ("Author", "R-08", "R-11"): sign(role, "SOP-014", "Approved")
-    for role in ("Author", "R-11"): sign(role, "WI-031", "Approved")
-    touch("WI-031", "Late edit after signing.")
+    docs(D1); touch("WI-031", "Late edit after signing.")
 
 def s03():
     for r in ("CC-001", "CC-002"): touch(r, "Approved to proceed."); sign("R-23", r, "Approved")
@@ -69,6 +62,7 @@ def s04():
 
 def s04x():
     touch("CC-002", "Implemented."); sign("R-21", "CC-002", "Implemented")
+    docs(("SOP-015", "WI-032"), sigs=False)   # attached documents not approved
 
 def s05():
     for rid, t, ty in (("INC-001", "Portal unavailable for 20 minutes", "incident"), ("RSK-001", "Late signature capture", "risk"),
@@ -79,8 +73,6 @@ def s06():
     for r in ("INC-001", "RSK-001", "DEV-001", "SUP-001"): touch(r)
     sign("R-21", "INC-001", "In Progress"); sign("R-21", "SUP-001", "Under Evaluation")
 
-def s06x(): touch("RSK-001", "Board paper drafted.")
-
 def s07():
     touch("CC-001", "All work verified.")
     for role in ("R-21", "Author", "R-11"): sign(role, "CC-001", "Closed")
@@ -89,18 +81,26 @@ def s07x():
     touch("CC-001", "All work verified.")
     for role in ("R-21", "Author"): sign(role, "CC-001", "Closed")
 
+def s08():
+    touch("SOP-014", "Retention period for training records changed to 6 years (revision 2).")
+    for role in ("Author", "R-08", "R-11"): sign(role, "SOP-014", "Approved")
+
+def s08x(): touch("SOP-014", "Retention period for training records changed to 6 years (revision 2).")
+
 if __name__ == "__main__":
-    t1 = branch("s01-create-records", "main", "Create two change controls and their documents (all Draft/New)", s01)
-    for n, m, f in (("s02x-no-signatures", "Approve documents with no signatures", s02_none), ("s02x-partial-signatures", "Approve documents, R-11 missing", s02_partial),
-                    ("s02x-wrong-signer", "Approve SOP with an R-11 signed by someone else", s02_wrong), ("s02x-stale-signature", "Edit after signing", s02_stale)):
+    t1 = branch("s01-create-change-controls", "main", "Create two change controls (New, no approvals needed)", s01)
+    for n, m, f in (("s02x-no-signatures", "Add documents with no signatures", s02_none), ("s02x-partial-signatures", "Add documents, R-11 missing", s02_partial),
+                    ("s02x-wrong-signer", "Add SOP with an R-11 signed by someone else", s02_wrong), ("s02x-stale-signature", "Edit after signing", s02_stale)):
         branch(n, t1, m, f)
-    t2 = branch("s02-approve-documents", t1, "Approve SOP-014, WI-031 and REC-052 with all signatures", s02_signed)
+    t2 = branch("s02-add-approved-documents", t1, "Add SOP-014, WI-031 and REC-052 with all signatures", s02)
     t3 = branch("s03-approve-changes", t2, "Approve both change controls (R-23)", s03)
-    branch("s04x-implement-with-draft-docs", t3, "Implement CC-002 while its documents are Draft", s04x)
-    t4 = branch("s04-implement-change", t3, "Implement CC-001 (documents Approved, R-21 signed)", s04)
+    branch("s04x-implement-with-unapproved-docs", t3, "Implement CC-002 while its documents have no signatures", s04x)
+    t4 = branch("s04-implement-change", t3, "Implement CC-001 (documents approved, R-21 signed)", s04)
     t5 = branch("s05-create-other-records", t4, "Create an incident, risk, deviation, CAPA and supplier evaluation", s05)
     branch("s06x-skip-a-stage", t5, "Risk jumps from New to Board", lambda: (touch("RSK-001"),))
     t6 = branch("s06-progress-records", t5, "Move four records on at once", s06)
     branch("s07x-close-without-quality", t6, "Close CC-001 without the R-11 signature", s07x)
-    branch("s07-close-change", t6, "Close CC-001 with R-21, Author and R-11", s07)
+    t7 = branch("s07-close-change", t6, "Close CC-001 with R-21, Author and R-11", s07)
+    branch("s08x-revise-sop-unsigned", t7, "Revise SOP-014 with no new signatures", s08x)
+    branch("s08-revise-sop", t7, "Revise SOP-014 with fresh signatures", s08)
     g("checkout", "-q", "main")

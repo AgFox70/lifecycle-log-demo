@@ -56,6 +56,14 @@ def section(rid, ticks, cur, info, extra=""):
     fm = lc.front(open(lc.find_record(rid)).read())
     t = T[rtype(rid)]
     sel = ticks.get(rid, [])
+    if t.get("implied"):  # documents: only approved versions reach main, so no state to pick
+        out = [f"<!-- record: {rid} -->\n### {rid}: {fm.get('title','')}\n",
+               f"{t['name']}. " + ("New document." if cur is None else "Revision of the approved document.") + (f" Attached to **{fm['change']}**." if fm.get("change") else "") + "\n"]
+        rows = info.get(rid, [])
+        tbl = "\n".join(f"| {role} | {ICON[st]}{(' by ' + who) if who and st == 'signed' else ''}{(': ' + why) if why else ''} |" for role, st, who, why in rows)
+        out.append(f"The following approvals are required for this document:\n\n| Approvals | Status |\n|:---:|:---|\n{tbl}\n")
+        out.append(f"Sign with `python3 tools/sign.py <role> {rid} {t['implied']}`, then commit and push the file in `signatures/`.\n")
+        return "\n".join(out) + extra
     boxes = "\n".join(f"- [{'x' if s in sel else ' '}] {s}" + (" (current)" if s == cur else "") for s in t["states"])
     out = [f"<!-- record: {rid} -->\n### {rid}: {fm.get('title','')}\n",
            f"{t['name']}. Current state: **{cur or 'not yet created'}**." + (f" Attached to **{fm['change']}**." if fm.get("change") else "") + "\n",
@@ -161,12 +169,20 @@ def main():
     lines, fail, moves, info, effective = [], False, {}, {}, {}
     for rid in changed:
         t, sel, c = T[rtype(rid)], ticks.get(rid, []), cur[rid]
+        imp = t.get("implied")
+        if imp:
+            sel = [imp]
+        elif c is None and not sel:
+            sel = [t["states"][0]]  # a new record starts at its first state without a click
+        ticks[rid] = sel
         if len(sel) != 1:
             lines.append(f"FAIL  {rid}: tick exactly one requested state (found {len(sel)}).")
             fail = True
             continue
         to = sel[0]
-        if c is None:
+        if imp:
+            ok, why = True, ""
+        elif c is None:
             ok, why = to == t["states"][0], f"a new record must start at {t['states'][0]}"
         else:
             nxt = t["transitions"][c]
@@ -174,7 +190,7 @@ def main():
         lines.append(f"{'OK  ' if ok else 'FAIL'}  {rid}  {c or 'none'} -> {to}" + ("" if ok else f": {why}"))
         fail |= not ok
         effective[rid] = to if ok else c
-        if ok and c != to:
+        if ok and (c != to or imp):
             author_id = lc.front(open(lc.find_record(rid)).read()).get("author", "")
             rows = []
             for role in t["approvals"].get(to, []):
@@ -188,10 +204,12 @@ def main():
         if rtype(rid) == "change-control" and ticks.get(rid, [None])[0] in lc.CFG["requires_docs_approved_for"] and effective.get(rid) != cur[rid]:
             for d in lc.attached(rid):
                 s = effective.get(d, cur.get(d))
+                if d in moves and any(r[1] != "signed" for r in moves[d][1]):
+                    s = "awaiting signatures"
                 bad = s != "Approved"
                 lines.append(f"{'FAIL' if bad else 'OK  '}  {rid}: attached {d} is {s or 'not yet created'}" + (" (needs Approved before Implemented)" if bad else ""))
                 fail |= bad
-    set_labels(repo, pr, [f"lc: {r} / {lc.slug(ticks[r][0])}" for r in changed if len(ticks.get(r, [])) == 1][:20])
+    set_labels(repo, pr, [f"lc: {r} / {lc.slug(ticks[r][0])}" for r in changed if len(ticks.get(r, [])) == 1 and not T[rtype(r)].get("implied")][:20])
     body = ["<!-- lifecycle-form -->\n## Lifecycle request\n\nOne section per record in this PR. Tick the requested state; approvals update as signature files are pushed.\n"]
     ccs = [r for r in changed if rtype(r) == "change-control"]
     docs_done = set()
@@ -199,7 +217,7 @@ def main():
         att = lc.attached(rid)
         body.append(section(rid, ticks, cur[rid], info))
         if att:
-            body.append("Documents attached to this change control:\n\n" + "\n".join(f"- {d}: {effective.get(d, cur.get(d)) or 'not yet created'}" + (" (in this PR)" if d in changed else "") for d in att) + "\n")
+            body.append("Documents attached to this change control:\n\n" + "\n".join(f"- {d}: {'awaiting signatures' if d in moves and any(r[1] != 'signed' for r in moves[d][1]) else (effective.get(d, cur.get(d)) or 'not yet created')}" + (" (in this PR)" if d in changed else "") for d in att) + "\n")
         for d in att:
             if d in changed:
                 body.append(section(d, ticks, cur[d], info))
