@@ -62,7 +62,8 @@ def section(rid, ticks, cur, info, extra=""):
         rows = info.get(rid, [])
         tbl = "\n".join(f"| {role} | {ICON[st]}{(' by ' + who) if who and st == 'signed' else ''}{(': ' + why) if why else ''} |" for role, st, who, why in rows)
         out.append(f"The following approvals are required for this document:\n\n| Approvals | Status |\n|:---:|:---|\n{tbl}\n")
-        out.append(f"Sign with `python3 tools/sign.py <role> {rid} {t['implied']}`, then commit and push the file in `signatures/`.\n")
+        if any(r[1] != "signed" for r in rows):
+            out.append(f"Sign with `python3 tools/sign.py <role> {rid} {t['implied']}`, then commit and push the file in `signatures/`.\n")
         return "\n".join(out) + extra
     att = f" Attached to **{fm['change']}**." if fm.get("change") else ""
     nxt = t["transitions"][cur] if cur else []
@@ -83,7 +84,8 @@ def section(rid, ticks, cur, info, extra=""):
             hdr = "The following approvals are required to transition to status" + f' "{to}":'
             tbl = "\n".join(f"| {role} | {ICON[st]}{(' by ' + who) if who and st == 'signed' else ''}{(': ' + why) if why else ''} |" for role, st, who, why in rows)
             out.append(f"{hdr}\n\n| Approvals | Status |\n|:---:|:---|\n{tbl}\n")
-            out.append("Sign with `python3 tools/sign.py <role> " + f"{rid} {to}`, then commit and push the file in `signatures/`.\n")
+            if any(r[1] != "signed" for r in rows):
+                out.append("Sign with `python3 tools/sign.py <role> " + f"{rid} {to}`, then commit and push the file in `signatures/`.\n")
         else:
             out.append(f'No approvals are required for "{to}".\n')
     return "\n".join(out) + extra
@@ -222,7 +224,9 @@ def main():
                 lines.append(f"{'FAIL' if bad else 'OK  '}  {rid}: attached {d} is {s or 'not yet created'}" + (" (needs Approved before Implemented)" if bad else ""))
                 fail |= bad
     set_labels(repo, pr, [f"lc: {r} / {lc.slug(ticks[r][0])}" for r in changed if len(ticks.get(r, [])) == 1 and not T[rtype(r)].get("implied")][:20])
-    body = ["<!-- lifecycle-form -->\n## Lifecycle request\n\nOne section per record in this PR. Tick the requested state; approvals update as signature files are pushed.\n"]
+    # The "Lifecycle request" intro only matters when a record with states is in the PR; documents just show approvals.
+    stateful = any(not T[rtype(r)].get("implied") for r in changed)
+    body = ["<!-- lifecycle-form -->\n" + ("## Lifecycle request\n\nOne section per record in this PR. Tick a state to change it; approvals update as signature files are pushed.\n" if stateful else "")]
     ccs = [r for r in changed if rtype(r) == "change-control"]
     docs_done = set()
     for rid in ccs:
