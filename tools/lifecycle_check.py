@@ -33,7 +33,11 @@ def parse_body(body):
     for m in re.finditer(r"<!--\s*record:\s*([\w-]+)\s*-->(.*?)(?=<!--\s*record:|## Notes for approvers|\Z)", body or "", re.S):
         t = rtype(m.group(1))
         if t:
-            ticks[m.group(1)] = [x for x in re.findall(r"^- \[[xX]\] (.+?)(?: \(current\))?\s*$", m.group(2), re.M) if x in T[t]["states"]]
+            got = [x for x in re.findall(r"^- \[[xX]\] (.+?)(?: \(current\))?\s*$", m.group(2), re.M) if x in T[t]["states"]]
+            prev = re.search(r"<!-- sel: (.*?) -->", m.group(2))
+            if len(got) > 1:  # a new box was ticked on top of the old one: keep the new one
+                got = [x for x in got if not prev or x != prev.group(1)][-1:]
+            ticks[m.group(1)] = got
     notes = ""
     if "## Notes for approvers" in (body or ""):
         notes = body.split("## Notes for approvers", 1)[1].strip()
@@ -55,7 +59,7 @@ def section(rid, ticks, cur, info, extra=""):
     boxes = "\n".join(f"- [{'x' if s in sel else ' '}] {s}" + (" (current)" if s == cur else "") for s in t["states"])
     out = [f"<!-- record: {rid} -->\n### {rid}: {fm.get('title','')}\n",
            f"{t['name']}. Current state: **{cur or 'not yet created'}**." + (f" Attached to **{fm['change']}**." if fm.get("change") else "") + "\n",
-           f"Please select the required state for this {t['name']}:\n\n{boxes}\n"]
+           f"Please select the required state for this {t['name']} (tick a different box to change it):\n\n{boxes}\n" + (f"<!-- sel: {sel[0]} -->\n" if len(sel) == 1 else "")]
     if len(sel) == 1 and rid in info:
         to, rows = sel[0], info[rid]
         if rows:
