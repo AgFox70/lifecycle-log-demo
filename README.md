@@ -14,33 +14,43 @@ Walk-through: `DEMO.md`.
 Live state of every record, rebuilt by CI after each merge (the same data as the portal).
 
 <!-- LOG:START -->
-_Updated 2026-11-11 10:55 UTC from the audit trail. 2 records._
+_Updated 2026-11-11 11:04 UTC from the audit trail. 7 records._
 
 ### Change Control (2)
 
 | ID | Title | State | Last change | Signatures |
 |---|---|---|---|---|
-| CC-001 | Update retention wording | **Approved** | 2026-11-11T10:55Z (PR #10) | R-23:r23.signer |
+| CC-001 | Update retention wording | **Implemented** | 2026-11-11T11:04Z (PR #12) | R-21:r21.signer |
 | CC-002 | Add supplier qualification step | **Approved** | 2026-11-11T10:55Z (PR #10) | R-23:r23.signer |
 
-### Incident (0)
+### Incident (1)
 
-_None yet._
+| ID | Title | State | Last change | Signatures |
+|---|---|---|---|---|
+| INC-001 | Portal unavailable for 20 minutes | **New** | 2026-11-11T11:04Z (PR #12) | - |
 
-### Risk (0)
+### Risk (1)
 
-_None yet._
+| ID | Title | State | Last change | Signatures |
+|---|---|---|---|---|
+| RSK-001 | Late signature capture | **New** | 2026-11-11T11:04Z (PR #12) | - |
 
-### Deviation (0)
+### Deviation (1)
 
-_None yet._
+| ID | Title | State | Last change | Signatures |
+|---|---|---|---|---|
+| DEV-001 | Skipped second review on a form | **New** | 2026-11-11T11:04Z (PR #12) | - |
 
-### CAPA (0)
+### CAPA (1)
 
-_None yet._
+| ID | Title | State | Last change | Signatures |
+|---|---|---|---|---|
+| CAPA-001 | Repeated late approvals | **Detection** | 2026-11-11T11:04Z (PR #12) | - |
 
-### Supplier Evaluation (0)
+### Supplier Evaluation (1)
 
-_None yet._
+| ID | Title | State | Last change | Signatures |
+|---|---|---|---|---|
+| SUP-001 | Cloud hosting vendor | **New** | 2026-11-11T11:04Z (PR #12) | - |
 
 <!-- LOG:END -->

@@ -1,0 +1,17 @@
+{
+  "schema": "demo/audit/1",
+  "record": "RSK-001",
+  "entries": [
+    {
+      "at": "2026-11-11T11:04Z",
+      "pr": 12,
+      "submitted_by": "AgFox70",
+      "required_roles": [],
+      "record_state": "New",
+      "record_sha256": "83f01f33eadda08ee938be21027b95882e08a712fe59754200e95aed84964b6b",
+      "pr_approved_by": [
+        "authorStanleyCSV"
+      ]
+    }
+  ]
+}

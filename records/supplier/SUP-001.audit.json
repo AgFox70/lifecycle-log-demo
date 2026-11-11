@@ -1,0 +1,17 @@
+{
+  "schema": "demo/audit/1",
+  "record": "SUP-001",
+  "entries": [
+    {
+      "at": "2026-11-11T11:04Z",
+      "pr": 12,
+      "submitted_by": "AgFox70",
+      "required_roles": [],
+      "record_state": "New",
+      "record_sha256": "532dddeae6573a0b3911e254a481cd919afb975a1a0df4d206b6bd6000a8588c",
+      "pr_approved_by": [
+        "authorStanleyCSV"
+      ]
+    }
+  ]
+}

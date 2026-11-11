@@ -1,0 +1,17 @@
+{
+  "schema": "demo/audit/1",
+  "record": "CAPA-001",
+  "entries": [
+    {
+      "at": "2026-11-11T11:04Z",
+      "pr": 12,
+      "submitted_by": "AgFox70",
+      "required_roles": [],
+      "record_state": "Detection",
+      "record_sha256": "a718f1be7a8a3283512a3e52a8bc5c3a7017993a479f3d220e0b35dd1c112f65",
+      "pr_approved_by": [
+        "authorStanleyCSV"
+      ]
+    }
+  ]
+}
