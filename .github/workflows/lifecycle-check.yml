@@ -1,0 +1,25 @@
+name: Lifecycle gate
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+  pull_request_review:
+    types: [submitted, dismissed]
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  actions: write
+concurrency:
+  group: lifecycle-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+jobs:
+  lifecycle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Lifecycle gate (demo)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 tools/lifecycle_check.py

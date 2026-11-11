@@ -1,0 +1,43 @@
+name: Portal
+on:
+  push:
+    branches: [main]
+    paths: ["records/**", "lifecycles.json", "tools/build_portal.py"]
+  pull_request:
+    paths: ["records/**", "lifecycles.json", "tools/build_portal.py"]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  pull-requests: read
+concurrency:
+  group: portal
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Build portal
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 tools/build_portal.py
+      - uses: actions/upload-artifact@v7
+        with:
+          name: portal
+          path: site
+      - uses: actions/upload-pages-artifact@v5
+        if: github.ref == 'refs/heads/main' && vars.PAGES_ENABLED == 'true'
+        with:
+          path: site
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main' && vars.PAGES_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v5

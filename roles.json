@@ -1,0 +1,11 @@
+{
+  "personas": {
+    "a.author": ["Author"],
+    "r08.signer": ["R-08"],
+    "r11.signer": ["R-11"],
+    "r21.signer": ["R-21"],
+    "r23.signer": ["R-23"],
+    "r01.signer": ["R-01"]
+  },
+  "github_approvers": ["authorStanleyCSV", "AgFox70"]
+}

@@ -1,0 +1,6 @@
+a.author namespaces="lifecycle-demo" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOz5APglrkVmYzfR65y/vi7XuLUO+agWS3SsL7ssJRcB
+r08.signer namespaces="lifecycle-demo" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBSsvOt9/vEgvsBIJWkFwkrXtlpQEYabtpD/+6YinWnk
+r11.signer namespaces="lifecycle-demo" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDLt00kMY4leLXcrOEjK4dOBZcHrIqHgCwwPSLqpuOxm
+r21.signer namespaces="lifecycle-demo" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGNjer0crAVeIC826AlId4x4oIvcARVvy5t2AH2mZ9Lm
+r23.signer namespaces="lifecycle-demo" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIASO8lUN0K6ya5rhIK8H8opSJZCoAmWg/5Gcs2ivdDA6
+r01.signer namespaces="lifecycle-demo" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMYrw3I1cpv5KSmJ0WFEZEy9Vw28NekwA+UG9olxpSIE
