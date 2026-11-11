@@ -3,298 +3,337 @@
   "change-control": {
    "name": "Change Control",
    "prefix": "CC",
-   "states": [
-    "New",
-    "Approved",
-    "Implemented",
-    "Closed",
-    "Cancelled"
-   ],
-   "transitions": {
-    "New": [
-     "Approved",
-     "Cancelled"
-    ],
-    "Approved": [
-     "Implemented",
-     "Cancelled"
-    ],
-    "Implemented": [
-     "Closed"
-    ],
-    "Closed": [],
-    "Cancelled": []
-   },
-   "approvals": {
-    "Approved": [
-     "R-23"
-    ],
-    "Implemented": [
-     "R-21"
-    ],
-    "Closed": [
-     "R-21",
-     "Author",
-     "R-11"
-    ],
-    "Cancelled": [
-     "R-23",
-     "R-11"
-    ]
+   "states": {
+    "New": {
+     "from": [
+      "New"
+     ],
+     "approvals": []
+    },
+    "Approved": {
+     "from": [
+      "Approved",
+      "New"
+     ],
+     "approvals": [
+      "R-23"
+     ]
+    },
+    "Implemented": {
+     "from": [
+      "Implemented",
+      "Approved"
+     ],
+     "approvals": [
+      "R-21"
+     ]
+    },
+    "Closed": {
+     "from": [
+      "Implemented"
+     ],
+     "approvals": [
+      "R-21",
+      "Author",
+      "R-11"
+     ]
+    },
+    "Cancelled": {
+     "from": [
+      "New",
+      "Approved"
+     ],
+     "approvals": [
+      "R-23",
+      "R-11"
+     ]
+    }
    }
   },
   "incident": {
    "name": "Incident",
    "prefix": "INC",
-   "states": [
-    "New",
-    "In Progress",
-    "Closed"
-   ],
-   "transitions": {
-    "New": [
-     "In Progress"
-    ],
-    "In Progress": [
-     "Closed"
-    ],
-    "Closed": []
-   },
-   "approvals": {
-    "In Progress": [
-     "R-21"
-    ],
-    "Closed": [
-     "R-21",
-     "R-11"
-    ]
+   "states": {
+    "New": {
+     "from": [
+      "New"
+     ],
+     "approvals": []
+    },
+    "In Progress": {
+     "from": [
+      "In Progress",
+      "New"
+     ],
+     "approvals": [
+      "R-21"
+     ]
+    },
+    "Closed": {
+     "from": [
+      "In Progress"
+     ],
+     "approvals": [
+      "R-21",
+      "R-11"
+     ]
+    }
    }
   },
   "risk": {
    "name": "Risk",
    "prefix": "RSK",
-   "states": [
-    "New",
-    "Developing",
-    "Reviewed",
-    "Board",
-    "Accepted",
-    "Mitigated"
-   ],
-   "transitions": {
-    "New": [
-     "Developing"
-    ],
-    "Developing": [
-     "Reviewed"
-    ],
-    "Reviewed": [
-     "Board",
-     "Developing"
-    ],
-    "Board": [
-     "Accepted",
-     "Mitigated",
-     "Developing"
-    ],
-    "Accepted": [],
-    "Mitigated": []
-   },
-   "approvals": {
-    "Reviewed": [
-     "R-08"
-    ],
-    "Board": [
-     "R-01"
-    ],
-    "Accepted": [
-     "R-01",
-     "R-11"
-    ],
-    "Mitigated": [
-     "R-21",
-     "R-11"
-    ]
+   "states": {
+    "New": {
+     "from": [
+      "New"
+     ],
+     "approvals": []
+    },
+    "Developing": {
+     "from": [
+      "Developing",
+      "New",
+      "Reviewed",
+      "Board"
+     ],
+     "approvals": []
+    },
+    "Reviewed": {
+     "from": [
+      "Reviewed",
+      "Developing"
+     ],
+     "approvals": [
+      "R-08"
+     ]
+    },
+    "Board": {
+     "from": [
+      "Board",
+      "Reviewed"
+     ],
+     "approvals": [
+      "R-01"
+     ]
+    },
+    "Accepted": {
+     "from": [
+      "Board"
+     ],
+     "approvals": [
+      "R-01",
+      "R-11"
+     ]
+    },
+    "Mitigated": {
+     "from": [
+      "Board"
+     ],
+     "approvals": [
+      "R-21",
+      "R-11"
+     ]
+    }
    }
   },
   "deviation": {
    "name": "Deviation",
    "prefix": "DEV",
-   "states": [
-    "New",
-    "Develop",
-    "Approved",
-    "Active",
-    "Remediated",
-    "Closed"
-   ],
-   "transitions": {
-    "New": [
-     "Develop"
-    ],
-    "Develop": [
-     "Approved"
-    ],
-    "Approved": [
-     "Active"
-    ],
-    "Active": [
-     "Remediated"
-    ],
-    "Remediated": [
-     "Closed"
-    ],
-    "Closed": []
-   },
-   "approvals": {
-    "Approved": [
-     "R-23"
-    ],
-    "Active": [
-     "R-23"
-    ],
-    "Remediated": [
-     "R-21"
-    ],
-    "Closed": [
-     "R-23",
-     "R-11"
-    ]
+   "states": {
+    "New": {
+     "from": [
+      "New"
+     ],
+     "approvals": []
+    },
+    "Develop": {
+     "from": [
+      "Develop",
+      "New"
+     ],
+     "approvals": []
+    },
+    "Approved": {
+     "from": [
+      "Approved",
+      "Develop"
+     ],
+     "approvals": [
+      "R-23"
+     ]
+    },
+    "Active": {
+     "from": [
+      "Active",
+      "Approved"
+     ],
+     "approvals": [
+      "R-23"
+     ]
+    },
+    "Remediated": {
+     "from": [
+      "Remediated",
+      "Active"
+     ],
+     "approvals": [
+      "R-21"
+     ]
+    },
+    "Closed": {
+     "from": [
+      "Remediated"
+     ],
+     "approvals": [
+      "R-23",
+      "R-11"
+     ]
+    }
    }
   },
   "capa": {
    "name": "CAPA",
    "prefix": "CAPA",
-   "states": [
-    "Detection",
-    "Containment",
-    "Impact & Risk Assessment",
-    "Investigation",
-    "Disposition",
-    "Closure / Trigger Evaluation"
-   ],
-   "transitions": {
-    "Detection": [
-     "Containment"
-    ],
-    "Containment": [
-     "Impact & Risk Assessment"
-    ],
-    "Impact & Risk Assessment": [
-     "Investigation"
-    ],
-    "Investigation": [
-     "Disposition"
-    ],
-    "Disposition": [
-     "Closure / Trigger Evaluation"
-    ],
-    "Closure / Trigger Evaluation": []
-   },
-   "approvals": {
-    "Containment": [
-     "R-21"
-    ],
-    "Disposition": [
-     "R-23"
-    ],
-    "Closure / Trigger Evaluation": [
-     "R-21",
-     "R-11"
-    ]
+   "states": {
+    "Detection": {
+     "from": [
+      "Detection"
+     ],
+     "approvals": []
+    },
+    "Containment": {
+     "from": [
+      "Containment",
+      "Detection"
+     ],
+     "approvals": [
+      "R-21"
+     ]
+    },
+    "Impact & Risk Assessment": {
+     "from": [
+      "Impact & Risk Assessment",
+      "Containment"
+     ],
+     "approvals": []
+    },
+    "Investigation": {
+     "from": [
+      "Investigation",
+      "Impact & Risk Assessment"
+     ],
+     "approvals": []
+    },
+    "Disposition": {
+     "from": [
+      "Disposition",
+      "Investigation"
+     ],
+     "approvals": [
+      "R-23"
+     ]
+    },
+    "Closure / Trigger Evaluation": {
+     "from": [
+      "Disposition"
+     ],
+     "approvals": [
+      "R-21",
+      "R-11"
+     ]
+    }
    }
   },
   "supplier": {
    "name": "Supplier Evaluation",
    "prefix": "SUP",
-   "states": [
-    "New",
-    "Under Evaluation",
-    "Approved",
-    "Rejected",
-    "Suspended"
-   ],
-   "transitions": {
-    "New": [
-     "Under Evaluation"
-    ],
-    "Under Evaluation": [
-     "Approved",
-     "Rejected"
-    ],
-    "Approved": [
-     "Suspended"
-    ],
-    "Suspended": [
-     "Under Evaluation"
-    ],
-    "Rejected": []
-   },
-   "approvals": {
-    "Under Evaluation": [
-     "R-21"
-    ],
-    "Approved": [
-     "R-21",
-     "R-11"
-    ],
-    "Rejected": [
-     "R-21",
-     "R-11"
-    ],
-    "Suspended": [
-     "R-21"
-    ]
+   "states": {
+    "New": {
+     "from": [
+      "New"
+     ],
+     "approvals": []
+    },
+    "Under Evaluation": {
+     "from": [
+      "Under Evaluation",
+      "New",
+      "Suspended"
+     ],
+     "approvals": [
+      "R-21"
+     ]
+    },
+    "Approved": {
+     "from": [
+      "Approved",
+      "Under Evaluation"
+     ],
+     "approvals": [
+      "R-21",
+      "R-11"
+     ]
+    },
+    "Rejected": {
+     "from": [
+      "Under Evaluation"
+     ],
+     "approvals": [
+      "R-21",
+      "R-11"
+     ]
+    },
+    "Suspended": {
+     "from": [
+      "Suspended",
+      "Approved"
+     ],
+     "approvals": [
+      "R-21"
+     ]
+    }
    }
   },
   "sop": {
    "name": "SOP",
    "prefix": "SOP",
-   "states": [
-    "Approved"
-   ],
-   "transitions": {
-    "Approved": []
-   },
-   "approvals": {
-    "Approved": [
-     "Author",
-     "R-08",
-     "R-11"
-    ]
+   "states": {
+    "Approved": {
+     "from": [],
+     "approvals": [
+      "Author",
+      "R-08",
+      "R-11"
+     ]
+    }
    },
    "implied": "Approved"
   },
   "wi": {
    "name": "Work Instruction",
    "prefix": "WI",
-   "states": [
-    "Approved"
-   ],
-   "transitions": {
-    "Approved": []
-   },
-   "approvals": {
-    "Approved": [
-     "Author",
-     "R-11"
-    ]
+   "states": {
+    "Approved": {
+     "from": [],
+     "approvals": [
+      "Author",
+      "R-11"
+     ]
+    }
    },
    "implied": "Approved"
   },
   "rec": {
    "name": "Record",
    "prefix": "REC",
-   "states": [
-    "Approved"
-   ],
-   "transitions": {
-    "Approved": []
-   },
-   "approvals": {
-    "Approved": [
-     "Author"
-    ]
+   "states": {
+    "Approved": {
+     "from": [],
+     "approvals": [
+      "Author"
+     ]
+    }
    },
    "implied": "Approved"
   }

@@ -64,21 +64,28 @@ def section(rid, ticks, cur, info, extra=""):
         out.append(f"The following approvals are required for this document:\n\n| Approvals | Status |\n|:---:|:---|\n{tbl}\n")
         out.append(f"Sign with `python3 tools/sign.py <role> {rid} {t['implied']}`, then commit and push the file in `signatures/`.\n")
         return "\n".join(out) + extra
-    boxes = "\n".join(f"- [{'x' if s in sel else ' '}] {s}" + (" (current)" if s == cur else "") for s in t["states"])
-    out = [f"<!-- record: {rid} -->\n### {rid}: {fm.get('title','')}\n",
-           f"{t['name']}. Current state: **{cur or 'not yet created'}**." + (f" Attached to **{fm['change']}**." if fm.get("change") else "") + "\n",
-           f"Please select the required state for this {t['name']} (tick a different box to change it):\n\n{boxes}\n" + (f"<!-- sel: {sel[0]} -->\n" if len(sel) == 1 else "")]
-    if len(sel) == 1 and rid in info:
+    att = f" Attached to **{fm['change']}**." if fm.get("change") else ""
+    nxt = t["transitions"][cur] if cur else []
+    moving = len(sel) == 1 and sel[0] != cur
+    out = [f"<!-- record: {rid} -->\n### {rid}: {fm.get('title','')}\n"]
+    if cur is None:
+        out.append(f"This is a new {t['name']}.{att} It will be merged to main with status: **{t['initial']}**.\n")
+    elif not nxt and cur not in t["editable"]:
+        out.append(f"The status of this {t['name']} is **{cur}**.{att} This is a final status: the record can no longer be changed.\n")
+    else:
+        boxes = "\n".join(f"- [{'x' if s in sel else ' '}] {s}" for s in nxt)
+        out.append(f"The status of this {t['name']} is **{cur}**.{att}\n")
+        if nxt:
+            out.append(f"To change the status, tick one box below. To keep it at {cur}, leave them all unticked.\n\n{boxes}\n" + (f"<!-- sel: {sel[0]} -->\n" if moving else ""))
+    if (cur is None or moving) and rid in info:
         to, rows = sel[0], info[rid]
         if rows:
-            hdr = ("The following approvals are required for this document" if rtype(rid) in ("sop", "wi", "rec") else "The following approvals are required to transition to status") + f' "{to}":'
+            hdr = "The following approvals are required to transition to status" + f' "{to}":'
             tbl = "\n".join(f"| {role} | {ICON[st]}{(' by ' + who) if who and st == 'signed' else ''}{(': ' + why) if why else ''} |" for role, st, who, why in rows)
             out.append(f"{hdr}\n\n| Approvals | Status |\n|:---:|:---|\n{tbl}\n")
             out.append("Sign with `python3 tools/sign.py <role> " + f"{rid} {to}`, then commit and push the file in `signatures/`.\n")
         else:
             out.append(f'No approvals are required for "{to}".\n')
-    elif len(sel) != 1:
-        out.append("_Tick one state to see the approvals required._\n")
     return "\n".join(out) + extra
 
 
@@ -172,8 +179,10 @@ def main():
         imp = t.get("implied")
         if imp:
             sel = [imp]
-        elif c is None and not sel:
-            sel = [t["states"][0]]  # a new record starts at its first state without a click
+        elif c is None:
+            sel = [t["initial"]]  # a new record starts at its first state without a click
+        elif not sel:
+            sel = [c]  # no box ticked: the status stays as it is
         ticks[rid] = sel
         if len(sel) != 1:
             lines.append(f"FAIL  {rid}: tick exactly one requested state (found {len(sel)}).")
@@ -183,10 +192,13 @@ def main():
         if imp:
             ok, why = True, ""
         elif c is None:
-            ok, why = to == t["states"][0], f"a new record must start at {t['states'][0]}"
+            ok, why = to == t["initial"], f"a new record must start at {t['initial']}"
         else:
             nxt = t["transitions"][c]
-            ok, why = (to == c or to in nxt), (f"{c} is final." if not nxt else f"not allowed. From {c} the next state can be: {', '.join(nxt)}")
+            if to == c:
+                ok, why = c in t["editable"], f"{c} is a final status: the record can no longer be changed."
+            else:
+                ok, why = to in nxt, f"not allowed. From {c} the next state can be: {', '.join(nxt) or 'none'}"
         lines.append(f"{'OK  ' if ok else 'FAIL'}  {rid}  {c or 'none'} -> {to}" + ("" if ok else f": {why}"))
         fail |= not ok
         effective[rid] = to if ok else c
