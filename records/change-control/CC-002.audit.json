@@ -12,6 +12,26 @@
       "pr_approved_by": [
         "authorStanleyCSV"
       ]
+    },
+    {
+      "at": "2026-11-11T10:55Z",
+      "pr": 10,
+      "submitted_by": "AgFox70",
+      "required_roles": [
+        "R-23"
+      ],
+      "record_state": "Approved",
+      "record_sha256": "dc5f9bd10b51e1d45fc88da7e7a68d0526ea8bee7fd583b75acdc744f0ceffbb",
+      "pr_approved_by": [
+        "authorStanleyCSV"
+      ],
+      "signatures": {
+        "R-23": {
+          "file": "signatures/R-23_Approve.CC-002.json",
+          "signer": "r23.signer",
+          "sha256": "0740bd479ba7a72ca569892c1240d7ee4122086a841c248e77557a81cb138813"
+        }
+      }
     }
   ]
 }

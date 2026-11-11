@@ -14,14 +14,14 @@ Walk-through: `DEMO.md`.
 Live state of every record, rebuilt by CI after each merge (the same data as the portal).
 
 <!-- LOG:START -->
-_Updated 2026-11-11 10:41 UTC from the audit trail. 2 records._
+_Updated 2026-11-11 10:55 UTC from the audit trail. 2 records._
 
 ### Change Control (2)
 
 | ID | Title | State | Last change | Signatures |
 |---|---|---|---|---|
-| CC-001 | Update retention wording | **New** | 2026-11-11T09:08Z (PR #6) | - |
-| CC-002 | Add supplier qualification step | **New** | 2026-11-11T09:08Z (PR #6) | - |
+| CC-001 | Update retention wording | **Approved** | 2026-11-11T10:55Z (PR #10) | R-23:r23.signer |
+| CC-002 | Add supplier qualification step | **Approved** | 2026-11-11T10:55Z (PR #10) | R-23:r23.signer |
 
 ### Incident (0)
 
