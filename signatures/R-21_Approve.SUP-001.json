@@ -1,0 +1,12 @@
+{
+  "schema": "lifecycle-demo/signature/1",
+  "record": "SUP-001",
+  "role": "R-21",
+  "meaning": "approve",
+  "to_state": "Under Evaluation",
+  "record_sha256": "532dddeae6573a0b3911e254a481cd919afb975a1a0df4d206b6bd6000a8588c",
+  "signer": "r21.signer",
+  "signed_at": "2026-11-11T08:09:41Z",
+  "statement": "I approve SUP-001 moving to Under Evaluation in my role R-21.",
+  "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgY2N6vRysBV4gLzboCUh3jHigi9\nwBFW/Lm3YAfaZn0uYAAAAObGlmZWN5Y2xlLWRlbW8AAAAAAAAABnNoYTUxMgAAAFMAAAAL\nc3NoLWVkMjU1MTkAAABAWP2lJ81bHdwjgQdZaBK56FrJPBmn0FihleP8oa/qzcLy0tcB1v\nvK2RV3nUee/npB+hW/nnYpak049+VN1E5WAQ==\n-----END SSH SIGNATURE-----\n"
+}

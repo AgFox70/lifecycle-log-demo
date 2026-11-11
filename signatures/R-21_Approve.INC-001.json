@@ -1,0 +1,12 @@
+{
+  "schema": "lifecycle-demo/signature/1",
+  "record": "INC-001",
+  "role": "R-21",
+  "meaning": "approve",
+  "to_state": "In Progress",
+  "record_sha256": "6b1eaa5e6c4c2d95790c6859ae3fe533278c88b786de6361b685da047035e18b",
+  "signer": "r21.signer",
+  "signed_at": "2026-11-11T08:09:41Z",
+  "statement": "I approve INC-001 moving to In Progress in my role R-21.",
+  "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgY2N6vRysBV4gLzboCUh3jHigi9\nwBFW/Lm3YAfaZn0uYAAAAObGlmZWN5Y2xlLWRlbW8AAAAAAAAABnNoYTUxMgAAAFMAAAAL\nc3NoLWVkMjU1MTkAAABAVIMm9XjSJ/NFV32g+Oi85i3NbmcDKUD3XVW36r6otv3FHccMn9\npt+89OZiiZ+m9Os+dneVpSQyfd3ENJ2o34DQ==\n-----END SSH SIGNATURE-----\n"
+}
