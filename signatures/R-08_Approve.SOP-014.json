@@ -1,0 +1,12 @@
+{
+  "schema": "lifecycle-demo/signature/1",
+  "record": "SOP-014",
+  "role": "R-08",
+  "meaning": "approve",
+  "to_state": "Approved",
+  "record_sha256": "3a8c717327d2b3fd2903f69998bc7b7c42c4ff7275b8f28c0ded12db8e3413b1",
+  "signer": "r08.signer",
+  "signed_at": "2026-11-11T08:09:32Z",
+  "statement": "I approve SOP-014 moving to Approved in my role R-08.",
+  "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgFKy8633+8SC+wEglaQXCSte2Wl\nARhpu2kP/7piKdaeQAAAAObGlmZWN5Y2xlLWRlbW8AAAAAAAAABnNoYTUxMgAAAFMAAAAL\nc3NoLWVkMjU1MTkAAABAGxi/pXANFwAshcG8qzEAwVjGbFGyvA18hD81+JudrdLDdig4wj\nL6foUfCH86sdCv15a1TEdYXKM2c+WnLNJoDw==\n-----END SSH SIGNATURE-----\n"
+}
