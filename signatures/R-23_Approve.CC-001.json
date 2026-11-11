@@ -1,0 +1,12 @@
+{
+  "schema": "lifecycle-demo/signature/1",
+  "record": "CC-001",
+  "role": "R-23",
+  "meaning": "approve",
+  "to_state": "Approved",
+  "record_sha256": "5ab628ad617b208033bd893de5d5b1f971ca2dc46a2caa1322aee02a25a7a528",
+  "signer": "r23.signer",
+  "signed_at": "2026-11-11T08:09:33Z",
+  "statement": "I approve CC-001 moving to Approved in my role R-23.",
+  "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgBI7yVQ3QrrJrmuEgrwfyilIlkK\ngCZaD/kZyzaK90MDoAAAAObGlmZWN5Y2xlLWRlbW8AAAAAAAAABnNoYTUxMgAAAFMAAAAL\nc3NoLWVkMjU1MTkAAABAEM4W4I2DCGNz45YvUW0zu1boZ+tfgfq9nHnV9HdLSSG8MtuObz\nwWdjyenZ7Hiv74ntAfkUEH4ooHRO9vcoWnAg==\n-----END SSH SIGNATURE-----\n"
+}
