@@ -4,9 +4,9 @@
   "role": "Author",
   "meaning": "approve",
   "to_state": "Approved",
-  "record_sha256": "3a8c717327d2b3fd2903f69998bc7b7c42c4ff7275b8f28c0ded12db8e3413b1",
+  "record_sha256": "668dfd1e2a39b26d2c4e5fce9c89f9a32a64944716fe02284d47bb0f7ffcb6ea",
   "signer": "a.author",
-  "signed_at": "2026-11-11T08:09:32Z",
+  "signed_at": "2026-11-11T08:09:47Z",
   "statement": "I approve SOP-014 moving to Approved in my role Author.",
-  "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg7PkA+CWuRWZjN9HrnL++Lte4tQ\n75qBZLdKwvuywlFwEAAAAObGlmZWN5Y2xlLWRlbW8AAAAAAAAABnNoYTUxMgAAAFMAAAAL\nc3NoLWVkMjU1MTkAAABA8EQjshTxri1orVN3+9wqahiKmT5A5qVS7sxyKLMQALn6bQk+FH\nt5zQ0c1ey+ZZuTcdPR9rUmM9Gbns2eZOKLCQ==\n-----END SSH SIGNATURE-----\n"
+  "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg7PkA+CWuRWZjN9HrnL++Lte4tQ\n75qBZLdKwvuywlFwEAAAAObGlmZWN5Y2xlLWRlbW8AAAAAAAAABnNoYTUxMgAAAFMAAAAL\nc3NoLWVkMjU1MTkAAABA7RMrkdxUIF2Qfv3TSs3eiOI2jGz/QxFu0PxS7ZbQvX8/bIzT+m\nwj9uHdxTt8meDPv7HABGZJGIrTMqjcb5cuDQ==\n-----END SSH SIGNATURE-----\n"
 }

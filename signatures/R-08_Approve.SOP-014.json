@@ -4,9 +4,9 @@
   "role": "R-08",
   "meaning": "approve",
   "to_state": "Approved",
-  "record_sha256": "3a8c717327d2b3fd2903f69998bc7b7c42c4ff7275b8f28c0ded12db8e3413b1",
+  "record_sha256": "668dfd1e2a39b26d2c4e5fce9c89f9a32a64944716fe02284d47bb0f7ffcb6ea",
   "signer": "r08.signer",
-  "signed_at": "2026-11-11T08:09:32Z",
+  "signed_at": "2026-11-11T08:09:47Z",
   "statement": "I approve SOP-014 moving to Approved in my role R-08.",
-  "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgFKy8633+8SC+wEglaQXCSte2Wl\nARhpu2kP/7piKdaeQAAAAObGlmZWN5Y2xlLWRlbW8AAAAAAAAABnNoYTUxMgAAAFMAAAAL\nc3NoLWVkMjU1MTkAAABAGxi/pXANFwAshcG8qzEAwVjGbFGyvA18hD81+JudrdLDdig4wj\nL6foUfCH86sdCv15a1TEdYXKM2c+WnLNJoDw==\n-----END SSH SIGNATURE-----\n"
+  "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgFKy8633+8SC+wEglaQXCSte2Wl\nARhpu2kP/7piKdaeQAAAAObGlmZWN5Y2xlLWRlbW8AAAAAAAAABnNoYTUxMgAAAFMAAAAL\nc3NoLWVkMjU1MTkAAABAYdqDoNWUJ+4F05ucYFtgcXAT0H1M7ZuH0NNwTbY5N/a81Yiadw\nyToBo60ULlha5ziU5UZ0Zg8VV9xth7MEqaAA==\n-----END SSH SIGNATURE-----\n"
 }
