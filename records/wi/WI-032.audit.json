@@ -1,0 +1,17 @@
+{
+  "schema": "demo/audit/1",
+  "record": "WI-032",
+  "entries": [
+    {
+      "at": "2026-11-11T07:30Z",
+      "pr": 1,
+      "submitted_by": "authorStanleyCSV",
+      "required_roles": [],
+      "record_state": "Draft",
+      "record_sha256": "2bc830707b78803cd1d69efce0c27122a03e10761da99816cc319b437a297e0d",
+      "pr_approved_by": [
+        "AgFox70"
+      ]
+    }
+  ]
+}

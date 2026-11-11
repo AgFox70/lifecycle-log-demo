@@ -14,11 +14,14 @@ Walk-through: `DEMO.md`.
 Live state of every record, rebuilt by CI after each merge (the same data as the portal).
 
 <!-- LOG:START -->
-_Updated 2026-11-11 07:02 UTC from the audit trail. 0 records._
+_Updated 2026-11-11 07:30 UTC from the audit trail. 9 records._
 
-### Change Control (0)
+### Change Control (2)
 
-_None yet._
+| ID | Title | State | Last change | Signatures |
+|---|---|---|---|---|
+| CC-001 | Update retention wording | **New** | 2026-11-11T07:30Z (PR #1) | - |
+| CC-002 | Add supplier qualification step | **New** | 2026-11-11T07:30Z (PR #1) | - |
 
 ### Incident (0)
 
@@ -40,16 +43,26 @@ _None yet._
 
 _None yet._
 
-### SOP (0)
+### SOP (3)
 
-_None yet._
+| ID | Title | State | Last change | Signatures |
+|---|---|---|---|---|
+| SOP-014 | Data Retention and Archiving | **Draft** | 2026-11-11T07:30Z (PR #1) | - |
+| SOP-015 | Supplier Qualification | **Draft** | 2026-11-11T07:30Z (PR #1) | - |
+| SOP-016 | Document Archiving | **Draft** | 2026-11-11T07:30Z (PR #1) | - |
 
-### Work Instruction (0)
+### Work Instruction (2)
 
-_None yet._
+| ID | Title | State | Last change | Signatures |
+|---|---|---|---|---|
+| WI-031 | Archiving a Closed Study Folder | **Draft** | 2026-11-11T07:30Z (PR #1) | - |
+| WI-032 | Completing the Supplier Questionnaire | **Draft** | 2026-11-11T07:30Z (PR #1) | - |
 
-### Record (0)
+### Record (2)
 
-_None yet._
+| ID | Title | State | Last change | Signatures |
+|---|---|---|---|---|
+| REC-052 | Retention Schedule | **Draft** | 2026-11-11T07:30Z (PR #1) | - |
+| REC-053 | Archive Log | **Draft** | 2026-11-11T07:30Z (PR #1) | - |
 
 <!-- LOG:END -->
