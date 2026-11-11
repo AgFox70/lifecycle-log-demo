@@ -1,0 +1,12 @@
+{
+  "schema": "lifecycle-demo/signature/1",
+  "record": "WI-031",
+  "role": "Author",
+  "meaning": "approve",
+  "to_state": "Approved",
+  "record_sha256": "77aeda10e9234e6f9258e5e552b2a1600a3f976aee1fa1fdfd22963160e79dd0",
+  "signer": "a.author",
+  "signed_at": "2026-11-11T08:09:29Z",
+  "statement": "I approve WI-031 moving to Approved in my role Author.",
+  "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg7PkA+CWuRWZjN9HrnL++Lte4tQ\n75qBZLdKwvuywlFwEAAAAObGlmZWN5Y2xlLWRlbW8AAAAAAAAABnNoYTUxMgAAAFMAAAAL\nc3NoLWVkMjU1MTkAAABA5jVYkFx0tIrdt0HKT4q7qwwiRcdtWBTD2LozNRhqHdNW1Nx+Km\n/Ulg1kbwRCP3oGHfHaDUgU9YbcW8XGrnqJBQ==\n-----END SSH SIGNATURE-----\n"
+}
