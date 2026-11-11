@@ -87,7 +87,9 @@ function render(){nav();const m=$("#main");
  m.querySelectorAll("th[data-k]").forEach(t=>t.onclick=()=>{const k=t.dataset.k;dir=sortk==k?-dir:1;sortk=k;render()});
  m.querySelectorAll("tr.rec").forEach(t=>t.onclick=()=>{openId=openId==t.dataset.id?null:t.dataset.id;render()});
  m.querySelectorAll(".chip").forEach(c=>c.onclick=()=>{st=st==c.dataset.s?"":c.dataset.s;render()})}
-function foot(){return `<footer>Built ${D.built}. Demo data: fictional.</footer>`}
+function foot(){return `<footer>Built ${D.built}. Demo data: fictional. Checks for updates every 20 s.</footer>`}
+const POLL=20;setInterval(async()=>{try{const t=await (await fetch(location.pathname+"?t="+Date.now(),{cache:"no-store"})).text();
+ const m=t.match(/"built": "([^"]+)"/);if(m&&m[1]!==D.built)location.reload()}catch(e){}},POLL*1000);
 window.onhashchange=()=>{view=location.hash.slice(1)||"all";st=own=q="";openId=null;render()};render();
 </script></body></html>"""
 pathlib.Path("site").mkdir(exist_ok=True)
