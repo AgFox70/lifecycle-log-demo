@@ -1,0 +1,12 @@
+{
+  "schema": "lifecycle-demo/signature/1",
+  "record": "REC-052",
+  "role": "Author",
+  "meaning": "approve",
+  "to_state": "Approved",
+  "record_sha256": "23180dd18c0472809ead1325ee419235df83e08efa4ec44fc6fa01c3e4405eac",
+  "signer": "a.author",
+  "signed_at": "2026-11-11T08:09:27Z",
+  "statement": "I approve REC-052 moving to Approved in my role Author.",
+  "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg7PkA+CWuRWZjN9HrnL++Lte4tQ\n75qBZLdKwvuywlFwEAAAAObGlmZWN5Y2xlLWRlbW8AAAAAAAAABnNoYTUxMgAAAFMAAAAL\nc3NoLWVkMjU1MTkAAABAcsdBDyFIxRMefMayls1pbEV3zKi420prCWFEQ64slhr0wEY0Bo\ntZBEnpgXt5/VwIS/Fo8lUVZmGhb7Dj+Gt7Cg==\n-----END SSH SIGNATURE-----\n"
+}
