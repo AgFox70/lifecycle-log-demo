@@ -14,7 +14,7 @@ Walk-through: `DEMO.md`.
 Live state of every record, rebuilt by CI after each merge (the same data as the portal).
 
 <!-- LOG:START -->
-_Updated 2026-11-11 09:08 UTC from the audit trail. 2 records._
+_Updated 2026-11-11 10:41 UTC from the audit trail. 2 records._
 
 ### Change Control (2)
 

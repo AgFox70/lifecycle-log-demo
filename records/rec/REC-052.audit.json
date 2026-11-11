@@ -1,0 +1,26 @@
+{
+  "schema": "demo/audit/1",
+  "record": "REC-052",
+  "entries": [
+    {
+      "at": "2026-11-11T10:41Z",
+      "pr": 8,
+      "submitted_by": "AgFox70",
+      "required_roles": [
+        "Author"
+      ],
+      "record_state": "Approved",
+      "record_sha256": "23180dd18c0472809ead1325ee419235df83e08efa4ec44fc6fa01c3e4405eac",
+      "pr_approved_by": [
+        "authorStanleyCSV"
+      ],
+      "signatures": {
+        "Author": {
+          "file": "signatures/Author_Approve.REC-052.json",
+          "signer": "a.author",
+          "sha256": "df2cc318ee6d3fdc5be108f46210561816f6e96f6c6abbaab732fdf8976171f6"
+        }
+      }
+    }
+  ]
+}

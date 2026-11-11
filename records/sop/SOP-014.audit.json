@@ -1,0 +1,38 @@
+{
+  "schema": "demo/audit/1",
+  "record": "SOP-014",
+  "entries": [
+    {
+      "at": "2026-11-11T10:41Z",
+      "pr": 8,
+      "submitted_by": "AgFox70",
+      "required_roles": [
+        "Author",
+        "R-08",
+        "R-11"
+      ],
+      "record_state": "Approved",
+      "record_sha256": "3a8c717327d2b3fd2903f69998bc7b7c42c4ff7275b8f28c0ded12db8e3413b1",
+      "pr_approved_by": [
+        "authorStanleyCSV"
+      ],
+      "signatures": {
+        "Author": {
+          "file": "signatures/Author_Approve.SOP-014.json",
+          "signer": "a.author",
+          "sha256": "ba2f3848397c512e0001a753a9a7031f4cd76e76564450e5cb8a87589b035421"
+        },
+        "R-08": {
+          "file": "signatures/R-08_Approve.SOP-014.json",
+          "signer": "r08.signer",
+          "sha256": "186f786a7ac8d47076fefd004d53c2a65e8d41d78a329964861985a5df5792ac"
+        },
+        "R-11": {
+          "file": "signatures/R-11_Approve.SOP-014.json",
+          "signer": "r11.signer",
+          "sha256": "de9aa15471e5ded9d4895e7f979aeedc7628ca77b272db43ff28e0c474b987ab"
+        }
+      }
+    }
+  ]
+}

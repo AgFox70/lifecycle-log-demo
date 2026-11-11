@@ -1,0 +1,32 @@
+{
+  "schema": "demo/audit/1",
+  "record": "WI-031",
+  "entries": [
+    {
+      "at": "2026-11-11T10:41Z",
+      "pr": 8,
+      "submitted_by": "AgFox70",
+      "required_roles": [
+        "Author",
+        "R-11"
+      ],
+      "record_state": "Approved",
+      "record_sha256": "77aeda10e9234e6f9258e5e552b2a1600a3f976aee1fa1fdfd22963160e79dd0",
+      "pr_approved_by": [
+        "authorStanleyCSV"
+      ],
+      "signatures": {
+        "Author": {
+          "file": "signatures/Author_Approve.WI-031.json",
+          "signer": "a.author",
+          "sha256": "acd458cb76dbdba4199192192109b5d4df8fdf8b444f37fd2d63928fc4e54026"
+        },
+        "R-11": {
+          "file": "signatures/R-11_Approve.WI-031.json",
+          "signer": "r11.signer",
+          "sha256": "6c41cd5cb94bae63b22e57abc81b1442e03971a8334c7531ff7533e264263abd"
+        }
+      }
+    }
+  ]
+}
