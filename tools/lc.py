@@ -2,7 +2,19 @@
 import json, hashlib, pathlib, re, subprocess, tempfile, datetime, os, glob
 
 CFG = json.load(open("lifecycles.json"))
-TYPES = CFG["types"]
+
+
+def derive(t):
+    """Each state lists the states it can be reached from (itself included if the record may be edited
+    while it stays there) and the approvals needed to enter it. The rest is worked out from that."""
+    defs, names = t["states"], list(t["states"])
+    return {**t, "states": names, "defs": defs, "initial": names[0],
+            "transitions": {s: [x for x in names if x != s and s in defs[x]["from"]] for s in names},
+            "editable": [s for s in names if s in defs[s]["from"]],
+            "approvals": {s: d["approvals"] for s, d in defs.items() if d["approvals"]}}
+
+
+TYPES = {k: derive(v) for k, v in CFG["types"].items()}
 ROLES = json.load(open("roles.json"))
 NS = "lifecycle-demo"
 PAYLOAD_KEYS = ["record", "role", "meaning", "to_state", "record_sha256", "signer", "signed_at", "statement"]

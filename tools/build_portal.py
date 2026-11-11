@@ -1,10 +1,9 @@
 """Build the lifecycle log portal: one self-contained site/index.html from the records, their audit files
 and lifecycles.json. Open PRs and their requested states are added when `gh` can read them."""
 import json, pathlib, re, subprocess, datetime, os
-
-L = json.load(open("lifecycles.json"))
+import lc
 # Documents (SOP, WI, REC) have no lifecycle: they live in the main document portal, not this one.
-FAMS = {k: v for k, v in L["types"].items() if not v.get("implied")}
+FAMS = {k: v for k, v in lc.TYPES.items() if not v.get("implied")}
 
 
 def front(path):
