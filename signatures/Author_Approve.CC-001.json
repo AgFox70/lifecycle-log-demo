@@ -1,0 +1,12 @@
+{
+  "schema": "lifecycle-demo/signature/1",
+  "record": "CC-001",
+  "role": "Author",
+  "meaning": "approve",
+  "to_state": "Closed",
+  "record_sha256": "facac6b1efb791b6263aa74d31558e688ec372eb839413f091f4e894b0b80538",
+  "signer": "a.author",
+  "signed_at": "2026-11-11T08:09:42Z",
+  "statement": "I approve CC-001 moving to Closed in my role Author.",
+  "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAg7PkA+CWuRWZjN9HrnL++Lte4tQ\n75qBZLdKwvuywlFwEAAAAObGlmZWN5Y2xlLWRlbW8AAAAAAAAABnNoYTUxMgAAAFMAAAAL\nc3NoLWVkMjU1MTkAAABAIaBBwcdOdMUrKSfNxBI7G0jYpV458okpOpDnf1UAQKkur20EVO\nDy7qjUgjsrpJgWGCrpEJKcEndG7Epyz18SCQ==\n-----END SSH SIGNATURE-----\n"
+}

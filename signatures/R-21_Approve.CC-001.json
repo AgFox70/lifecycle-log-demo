@@ -3,10 +3,10 @@
   "record": "CC-001",
   "role": "R-21",
   "meaning": "approve",
-  "to_state": "Implemented",
-  "record_sha256": "9066818046150ad68b10425b2b14b2d7f54932ba03dbe25baf96b93fbcedb815",
+  "to_state": "Closed",
+  "record_sha256": "facac6b1efb791b6263aa74d31558e688ec372eb839413f091f4e894b0b80538",
   "signer": "r21.signer",
-  "signed_at": "2026-11-11T08:09:36Z",
-  "statement": "I approve CC-001 moving to Implemented in my role R-21.",
-  "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgY2N6vRysBV4gLzboCUh3jHigi9\nwBFW/Lm3YAfaZn0uYAAAAObGlmZWN5Y2xlLWRlbW8AAAAAAAAABnNoYTUxMgAAAFMAAAAL\nc3NoLWVkMjU1MTkAAABAFfJqrmRLm2ad32fFs/ZVv7osbPeoQocLasQOPuKiIA98sIWdG7\nkPnrMvfoyNTzbUkthtzRE5L1jPVX4DWuHzDA==\n-----END SSH SIGNATURE-----\n"
+  "signed_at": "2026-11-11T08:09:42Z",
+  "statement": "I approve CC-001 moving to Closed in my role R-21.",
+  "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgY2N6vRysBV4gLzboCUh3jHigi9\nwBFW/Lm3YAfaZn0uYAAAAObGlmZWN5Y2xlLWRlbW8AAAAAAAAABnNoYTUxMgAAAFMAAAAL\nc3NoLWVkMjU1MTkAAABApJo7+XD7TF/p09oTdqhtnhaZlO06S5fhx7iC4I/J/e9ehSEaZm\nw3k4Tl7cuC8MxYgdTs/6It+ngTPyKjOae5DQ==\n-----END SSH SIGNATURE-----\n"
 }
