@@ -52,6 +52,38 @@
           "sha256": "4e0ebe3398578acb8cacf89c67f4d6ab111cd90b1f2455a78b32bc70101f26d6"
         }
       }
+    },
+    {
+      "at": "2026-11-13T11:27Z",
+      "pr": 13,
+      "submitted_by": "AgFox70",
+      "required_roles": [
+        "R-21",
+        "Author",
+        "R-11"
+      ],
+      "record_state": "Closed",
+      "record_sha256": "facac6b1efb791b6263aa74d31558e688ec372eb839413f091f4e894b0b80538",
+      "pr_approved_by": [
+        "authorStanleyCSV"
+      ],
+      "signatures": {
+        "R-21": {
+          "file": "signatures/R-21_Approve.CC-001.json",
+          "signer": "r21.signer",
+          "sha256": "cf19e0dab70a47c37cd3daf98ab7edeaa8631a66dff8178b6fb9292facf7ac03"
+        },
+        "Author": {
+          "file": "signatures/Author_Approve.CC-001.json",
+          "signer": "a.author",
+          "sha256": "ae5a19da76596990cffdb868ccd789db6808c475b8f16a469a4d616cddee7956"
+        },
+        "R-11": {
+          "file": "signatures/R-11_Approve.CC-001.json",
+          "signer": "r11.signer",
+          "sha256": "6d17ae8889745960706e0bde352d01193d5df32bcc9887bab57f67590b9456b3"
+        }
+      }
     }
   ]
 }
